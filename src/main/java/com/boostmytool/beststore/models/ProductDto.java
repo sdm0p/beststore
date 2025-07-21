@@ -1,13 +1,12 @@
 package com.boostmytool.beststore.models;
 
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
-public class productDto {
+public class ProductDto {
     @NotEmpty(message = "name is required")
     private String name;
 
@@ -17,13 +16,14 @@ public class productDto {
     @NotEmpty(message = "category is required")
     private String category;
 
-    @NotEmpty(message = "price is required")
+    @NotNull(message = "price is required")
+    @Min(value = 1, message = "Price must be greater than 0")
     private double price;
 
-    @Size(min = 10,message = "The description should be atleast 10 characters")
+    @Size(min = 10,message = "The description should be at least 10 characters")
     @Size(max = 1000,message = "The description cannot exceed 1000 characters")
     private String description;
 
-    private MultipartFile imageFileName;
+    private MultipartFile imageFile;
 
 }
