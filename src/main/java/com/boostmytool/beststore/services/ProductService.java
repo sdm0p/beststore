@@ -27,7 +27,8 @@ public class ProductService {
     ProductRepository productRepository;
 
     public List<Product> showProductList() {
-       return productRepository.findAll(Sort.by(Sort.Direction.DESC,"id"));
+
+        return productRepository.findAll(Sort.by(Sort.Direction.DESC,"id"));
     }
 
 
@@ -39,7 +40,7 @@ public class ProductService {
         String storageFileName=createdAt.getTime()+ " " + image.getOriginalFilename();
         try {
             String uploadDir="public/images/";
-            Path uploadpath= Paths.get(uploadDir);
+                Path uploadpath= Paths.get(uploadDir);
             if(!Files.exists(uploadpath))
                 Files.createDirectories(uploadpath);
             try (InputStream inputStream=image.getInputStream()){

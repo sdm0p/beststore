@@ -38,12 +38,14 @@ public class ProductController {
         model.addAttribute("products",products);
         return "products/index";
     }
+
     @GetMapping("/create")
     public String showCreatePage(Model model){
         ProductDto productDto=new ProductDto();
         model.addAttribute("productDto",productDto);
         return "products/createProduct";
     }
+
     @PostMapping("/create")
     public String createProduct(
             @Valid @ModelAttribute ProductDto productDto,
@@ -55,8 +57,8 @@ public class ProductController {
         productService.createProduct(productDto);
 
         return "redirect:/products";
-
     }
+
     @GetMapping("/edit")
     public String showEditPage(Model model,@RequestParam int id){
         Optional<Product> productOptional = productRepository.findById(id);
@@ -81,6 +83,7 @@ public class ProductController {
         }
 
     }
+
     @PostMapping("/edit")
     public String updateProduct(
             Model model, @RequestParam int id, @Valid @ModelAttribute ProductDto productDto, BindingResult result){
